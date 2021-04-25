@@ -1,3 +1,18 @@
+# 使用 demo
+
+* 引入maven
+   ```java
+    <dependency>
+        <groupId>com.github.cyuanxin</groupId>
+        <artifactId>excel_export_import</artifactId>
+        <version>2.0-SNAPSHOT</version>
+    </dependency>
+    ```
+    
+* 在资源目录文件夹下粘贴 当前项目下的resources的export和import文件夹，里面包含的是自己对excel导入导出的配置，将来使用的时候，按照你自己需要简单配置
+   
+* test/java/Test.java, 运行main方法即可
+
 # 特性
 
 * xml配置
@@ -31,7 +46,5 @@
 * 导出时，把list or map 转化成 对应的excel或者csv 
 * 读取excel，转换成相应的map或者其他内容(其他内容暂时还未开发)。目前只有map。
 
-# demo
 
-* test->main方法，执行import和export方法
 

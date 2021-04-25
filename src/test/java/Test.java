@@ -29,6 +29,12 @@ public class Test {
     }
 
 
+    /**
+     * 把excel导入，变成map
+     * @throws FileImportException
+     * @throws FileNotFoundException
+     * @throws URISyntaxException
+     */
     public static void testImport() throws FileImportException, FileNotFoundException, URISyntaxException {
 
         ConfigParser configParser = ConfigurationParserFactory.getConfigParser(Configuration.ParserType.XML);
@@ -40,8 +46,8 @@ public class Test {
             MapResult mapResult = (MapResult) FileImportExecutor.importFile(configuration, importFile, importFile.getName());
             List<Map> maps = mapResult.getResult();
             for (Map<String, Object> map : maps) {
-                int index = (int) map.get("index");
-                float f1 = (float) map.get("float");
+                Integer index = (Integer) map.get("index");
+                Float f1 = (Float) map.get("float");
                 String string = (String) map.get("string");
                 Date date = (Date) map.get("date");
                 BigDecimal bigDecimal = (BigDecimal) map.get("bigdecimal");
@@ -53,6 +59,11 @@ public class Test {
         }
     }
 
+    /**
+     * excel导出，从一个map或者实体类变成excel
+     * @throws FileNotFoundException
+     * @throws FileExportException
+     */
     public static void testExport() throws FileNotFoundException, FileExportException {
         ExportConfig exportConfig = ExportConfigFactory.getExportConfig(Test.class.getResourceAsStream("export/exportconfig.xml"));
         //map也可以换成一个实体类
@@ -67,7 +78,10 @@ public class Test {
             lists.add(maps);
         }
         ExportResult exportResult = FileExportor.getExportResult(exportConfig, lists);
-        OutputStream outputStream = new FileOutputStream("d://output.xlsx");
+        //输出文件在d盘根目录，系统是win
+//        OutputStream outputStream = new FileOutputStream("d://output.xlsx");
+        //系统mac
+        OutputStream outputStream = new FileOutputStream("output.xlsx");
         exportResult.export(outputStream);
 
     }
